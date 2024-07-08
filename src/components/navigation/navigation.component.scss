@@ -43,9 +43,11 @@
         &-left {
             display: flex;
             flex-direction: row;
+            
 
             &-item {
                 color: white !important;
+                margin-right: 1rem;
        
                
             }
