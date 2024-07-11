@@ -2,17 +2,50 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1rem;
-    
-    &-heading {
-        
-    }
 
-    &-icons {   
-        background-color: aqua !important   ;
-    
-        &-item {
-        
+    background-color: whitesmoke;
+
+    &-box {
+        width: 37vw;
+        margin: 3rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+   
+
+
+        &-text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 1rem;
+
+            &-p {
+                justify-self: center;
+            }
+
+            &>p {
+                align-items: center;
+                margin-top: 1rem;
+       
+            }
+           
+        }
+
+        &-heding {
+         
+            margin-top: 1rem;
+        }
+
+        &-img {
+            width: 5rem;
+            height: 5rem;
+            object-fit: contain;
+            margin-top: 1rem;
         }
     }
+
+       
+  
 }
+
