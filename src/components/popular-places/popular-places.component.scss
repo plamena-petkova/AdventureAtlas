@@ -1,0 +1,15 @@
+.carousel {
+  &__container {
+    width: 70vw;
+    height: 70vh;
+    background-color: whitesmoke;
+    position: relative;
+
+    &-img {
+        width: 50%;
+        display: block;
+        object-fit: cover;
+        transform: translate(50%, -10%);
+    }
+  }
+}
