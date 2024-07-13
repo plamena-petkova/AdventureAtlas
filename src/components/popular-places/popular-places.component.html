@@ -1,10 +1,16 @@
-<carousel class="carousel" [noWrap]="noWrapSlides">
-  <slide *ngFor="let slide of slides; let index=index" class="carousel__container">
-    <img [src]="slide.image" class="carousel__container-img" alt="image slide">
-    <div class="carousel-caption">
-      <h4>{{slide.text}}</h4>
-    </div>
-  </slide>
-</carousel>
+
+<div class="popular_places">
+  <h3 class="popular_places-heading">Popular places to visit</h3>
+</div>
+  <carousel class="carousel" [noWrap]="noWrapSlides">
+    <slide *ngFor="let slide of slides; let index=index" class="carousel__container">
+      <img [src]="slide.image" class="carousel__container-img" alt="image slide">
+      <div class="carousel-caption">
+        <h4>{{slide.text}}</h4>
+      </div>
+    </slide>
+  </carousel>
+
+
 
 
