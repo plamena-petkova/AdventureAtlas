@@ -1,7 +1,12 @@
 
 
 .nav {
-   
+    background-image: linear-gradient(
+        rgba(black, 0.10),
+        rgba(grey, 0.60)
+      ),
+      url("../../assets/header-pic.avif");
+    background-size: cover;
     height: 70vh;
     width: 100vw;
     display: flex;

@@ -1,0 +1,35 @@
+.footer__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    background-color:#13374D;
+    color: white;
+    
+
+    &-services {
+    padding-right: 2rem;
+    }
+    &-legal {
+        padding-right: 2rem;
+    }
+
+    &-company-socials {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+       
+        &-first >p {
+            padding: 1rem;
+
+           &-p-btn >a {
+            color: beige;
+           }
+        }
+
+    }
+}
+
+.custom-icon {
+    fill: white;
+}
