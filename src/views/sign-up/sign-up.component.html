@@ -1,1 +1,97 @@
-<p>sign-up works!</p>
+<div class="stepper__container">
+    <h3 class="stepper__container-heading">Fill in your data to Sign Up</h3>
+  <mat-stepper #stepper>
+    <mat-step [stepControl]="namesFormGroup">
+      <form [formGroup]="namesFormGroup">
+        <ng-template matStepLabel>Fill out your name</ng-template>
+        <mat-form-field>
+          <mat-label>Name</mat-label>
+          <input
+            matInput
+            placeholder="First name, Last name"
+            formControlName="names"
+            required
+          />
+        </mat-form-field>
+        <mat-error *ngIf="namesFormGroup.controls.names.errors">
+          Name is required
+        </mat-error>
+        <div>
+          <button
+            (click)="logInput()"
+            mat-button
+            [disabled]="namesFormGroup.controls.names.errors"
+            matStepperNext
+          >
+            Next
+          </button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="usernameFormGroup">
+      <form [formGroup]="usernameFormGroup">
+        <ng-template matStepLabel>Fill your desired username</ng-template>
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input
+            matInput
+            formControlName="username"
+            placeholder="johny"
+            required
+          />
+        </mat-form-field>
+        <mat-error *ngIf="usernameFormGroup.controls.username.errors">
+          Username is required
+        </mat-error>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button
+            (click)="logInput()"
+            [disabled]="usernameFormGroup.controls.username.errors"
+            mat-button
+            matStepperNext
+          >
+            Next
+          </button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="passwordFormGroup">
+      <form [formGroup]="passwordFormGroup">
+        <ng-template matStepLabel>Password</ng-template>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input
+            type="password"
+            matInput
+            formControlName="password"
+            placeholder="*******"
+            required
+          />
+        </mat-form-field>
+        <mat-error *ngIf="passwordFormGroup.controls.password.errors">
+          Password is required
+        </mat-error>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button
+            (click)="logInput()"
+            [disabled]="passwordFormGroup.controls.password.errors"
+            mat-button
+            matStepperNext
+          >
+            Next
+          </button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</div>

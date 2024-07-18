@@ -2,6 +2,8 @@
     font-size: large;
     display: flex;
     justify-content: center;
+    background-color: #5FB5B6;
+    padding-top: 2rem;
  
     &-heading {
         color: white;
@@ -11,8 +13,9 @@
 
 .carousel {
 
-
   &__container {
+  
+    background-color: #5FB5B6;
     width: 70vw;
     height: 70vh;
     position: relative;
