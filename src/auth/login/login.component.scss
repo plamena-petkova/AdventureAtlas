@@ -1,0 +1,18 @@
+.stepper__container {
+    background-image: linear-gradient(
+        rgba(black, 0.10),
+        rgba(grey, 0.60)
+      ),
+      url("../../assets/header-pic.avif");
+    height: 100vh;
+    padding: 5rem;
+
+    &-heading {
+        padding-left: 1rem;
+        color: white;
+    }
+
+    &-form {
+        background-color: rgba(200, 200, 200, 0.5);
+    }
+}

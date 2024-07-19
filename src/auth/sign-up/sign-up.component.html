@@ -1,6 +1,6 @@
 <div class="stepper__container">
     <h3 class="stepper__container-heading">Fill in your data to Sign Up</h3>
-  <mat-stepper #stepper>
+  <mat-stepper class="stepper__container-form" #stepper (ngSubmit)="onSubmit()">
     <mat-step [stepControl]="namesFormGroup">
       <form [formGroup]="namesFormGroup">
         <ng-template matStepLabel>Fill out your name</ng-template>
@@ -18,9 +18,35 @@
         </mat-error>
         <div>
           <button
-            (click)="logInput()"
             mat-button
             [disabled]="namesFormGroup.controls.names.errors"
+            matStepperNext
+          >
+            Next
+          </button>
+        </div>
+      </form>
+    </mat-step>
+    
+    <mat-step [stepControl]="emailFormGroup">
+      <form [formGroup]="emailFormGroup">
+        <ng-template matStepLabel>Fill out your email</ng-template>
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            placeholder="Email"
+            formControlName="email"
+            required
+          />
+        </mat-form-field>
+        <mat-error *ngIf="emailFormGroup.controls.email.errors">
+          Email is required
+        </mat-error>
+        <div>
+          <button
+            mat-button
+            [disabled]="emailFormGroup.controls.email.errors"
             matStepperNext
           >
             Next
@@ -46,7 +72,6 @@
         <div>
           <button mat-button matStepperPrevious>Back</button>
           <button
-            (click)="logInput()"
             [disabled]="usernameFormGroup.controls.username.errors"
             mat-button
             matStepperNext
@@ -75,7 +100,6 @@
         <div>
           <button mat-button matStepperPrevious>Back</button>
           <button
-            (click)="logInput()"
             [disabled]="passwordFormGroup.controls.password.errors"
             mat-button
             matStepperNext
@@ -86,12 +110,14 @@
       </form>
     </mat-step>
     <mat-step>
+      <form (ngSubmit)="onSubmit()">
       <ng-template matStepLabel>Done</ng-template>
       <p>You are now done.</p>
       <div>
         <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">Reset</button>
+        <button mat-button type="submit">Submit</button>
       </div>
+      </form>
     </mat-step>
   </mat-stepper>
 </div>
