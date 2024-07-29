@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { EmailValidator } from '@angular/forms';
 import { map, Observable } from 'rxjs';
 import { IUser } from '../interfaces/user';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +30,16 @@ export class AuthService {
         console.log('Response', response)
         return response;
       }));
+  }
+
+  async getUsers(): Promise<IUser[]> {
+    const observable: Observable<IUser[]> = this.http.get<IUser[]>(`${this.authUrl}/all-users`)
+      .pipe(map(response => {
+        console.log('Response', response);
+        return response;
+      }));
+    
+    // Use firstValueFrom to convert the Observable to a Promise
+    return firstValueFrom(observable);
   }
 }
