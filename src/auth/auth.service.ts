@@ -24,12 +24,13 @@ export class AuthService {
       }));
   };
 
-  login(userData: {username: String, password:string}): Observable<any> {
-    return this.http.post<any>(`${this.authUrl}/login`, userData)
+  async login(userData: {username: String, password:string}): Promise<IUser> {
+    const observable: Observable<IUser> =  this.http.post<any>(`${this.authUrl}/login`, userData)
       .pipe(map(response => {
         console.log('Response', response)
         return response;
       }));
+      return firstValueFrom(observable);
   }
 
   async getUsers(): Promise<IUser[]> {
@@ -39,7 +40,6 @@ export class AuthService {
         return response;
       }));
     
-    // Use firstValueFrom to convert the Observable to a Promise
     return firstValueFrom(observable);
   }
 }

@@ -1,6 +1,6 @@
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -10,6 +10,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { IUser } from '../../interfaces/user';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { AuthStore } from '../../store/auth.store';
 
 @Component({
   selector: 'app-login',
@@ -45,6 +46,23 @@ export class LoginComponent {
     private router: Router
   ) {}
 
+  store = inject(AuthStore);
+
+  onSubmit() {
+    const loginData: any = {
+      username: this.usernameFormGroup.value.username!,
+      password: this.passwordFormGroup.value.password!,
+    };
+
+    this.login(loginData)
+        .then(() => console.log('Logged User'))
+  }
+
+  async login(loginData:any) {
+    await this.store.login(loginData)
+  } 
+ 
+/*
   onSubmit() {
     const loginData: any = {
       username: this.usernameFormGroup.value.username!,
@@ -55,6 +73,7 @@ export class LoginComponent {
     this.auth.login(loginData).subscribe({
       next: (response:any) => {
         console.log('Login successful', response);
+        this.store.login(loginData)
         this.router.navigate(['/']);
       },
       complete: () => {
@@ -65,4 +84,10 @@ export class LoginComponent {
       },
     });
   }
+
+ */
+
 }
+
+
+
