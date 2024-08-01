@@ -6,7 +6,7 @@ import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
 type UserState = {
     users: IUser[];
     loading: boolean;
-    currentUser: {};
+    currentUser: IUser | null;
     error: string | null;
 }
 
@@ -14,7 +14,7 @@ type UserState = {
 const initialState : UserState = {
     users: [],
     loading:false,
-    currentUser:{},
+    currentUser:null,
     error: null,
 }
 
@@ -38,11 +38,11 @@ export const AuthStore = signalStore(
                 const currentUser = await authService.login(credentials);
                 patchState(store, { currentUser, loading: false, error: null });
             } catch (error:unknown) {
-                patchState(store, { currentUser: {}, loading: false, });
+                patchState(store, { currentUser: null, loading: false, });
             }
         },
         logout() {
-            patchState(store, { currentUser: {}});
+            patchState(store, { currentUser: null});
         }
     })
     )

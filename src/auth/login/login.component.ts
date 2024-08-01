@@ -1,13 +1,12 @@
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatStepperModule } from '@angular/material/stepper';
-import { IUser } from '../../interfaces/user';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { AuthStore } from '../../store/auth.store';
@@ -26,6 +25,7 @@ import { AuthStore } from '../../store/auth.store';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
   providers: [
+    AuthStore,
     {
       provide: STEPPER_GLOBAL_OPTIONS,
       useValue: { displayDefaultIndicatorType: false },
@@ -48,44 +48,28 @@ export class LoginComponent {
 
   store = inject(AuthStore);
 
+  
+
   onSubmit() {
     const loginData: any = {
       username: this.usernameFormGroup.value.username!,
       password: this.passwordFormGroup.value.password!,
     };
 
-    this.login(loginData)
-        .then(() => console.log('Logged User'))
+   
+      this.loginUser(loginData)
+          .then(() => console.log('User logged!'))
+          this.router.navigate(['/']);
   }
 
-  async login(loginData:any) {
-    await this.store.login(loginData)
-  } 
- 
-/*
-  onSubmit() {
-    const loginData: any = {
-      username: this.usernameFormGroup.value.username!,
-      password: this.passwordFormGroup.value.password!,
-    };
-
+  async loginUser(loginData:{username:string, password:string}) {
+    try {
+      await this.store.login(loginData);
+    } catch (e) {
+      console.error(e)
+    }
     
-    this.auth.login(loginData).subscribe({
-      next: (response:any) => {
-        console.log('Login successful', response);
-        this.store.login(loginData)
-        this.router.navigate(['/']);
-      },
-      complete: () => {
-        console.log('login stream completed');
-      },
-      error: (err:any) => {
-        console.error(err);
-      },
-    });
-  }
-
- */
+  } 
 
 }
 

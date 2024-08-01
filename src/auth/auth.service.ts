@@ -19,27 +19,31 @@ export class AuthService {
   register(body:IUser): Observable<any> {
     return this.http.post<any>(`${this.authUrl}/sign-up`, body)
       .pipe(map(response => {
-        console.log('Response', response)
         return response;
       }));
   };
 
   async login(userData: {username: String, password:string}): Promise<IUser> {
-    const observable: Observable<IUser> =  this.http.post<any>(`${this.authUrl}/login`, userData)
-      .pipe(map(response => {
-        console.log('Response', response)
-        return response;
-      }));
-      return firstValueFrom(observable);
-  }
-
+        const observable: Observable<IUser> = this.http.post<any>(`${this.authUrl}/login`, userData)
+          .pipe(map(response => {
+            return response;
+          }));
+        
+        return firstValueFrom(observable);
+      }
+  
   async getUsers(): Promise<IUser[]> {
     const observable: Observable<IUser[]> = this.http.get<IUser[]>(`${this.authUrl}/all-users`)
       .pipe(map(response => {
-        console.log('Response', response);
         return response;
       }));
     
     return firstValueFrom(observable);
   }
+}
+
+async function sleep(ms:number) {
+  return new Promise(resolve => {
+    setTimeout(resolve, ms);
+  })
 }

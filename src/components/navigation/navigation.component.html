@@ -6,6 +6,12 @@
       <a mat-button routerLink="/my-trips" class="nav__list-left-item"
         >My Trips</a
       >
+      <div>
+        <p>Welcome, {{ store.currentUser() | json }}</p>
+       
+      </div>
+    
+      
       <a mat-button routerLink="/contacts" class="nav__list-left-item"
         >Contacts</a
       >

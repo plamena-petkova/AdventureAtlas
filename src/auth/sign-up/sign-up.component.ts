@@ -65,8 +65,6 @@ export class SignUpComponent {
       username: this.usernameFormGroup.value.username!,
       password: this.passwordFormGroup.value.password!,
     };
-
-    console.log('Body', body);
     this.auth.register(body).subscribe({
       next: (response) => {
         console.log('Registration successful', response);
