@@ -9,12 +9,13 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthStore } from '../../store/auth.store';
 import { CommonModule, JsonPipe } from '@angular/common';
 import { IUser } from '../../interfaces/user';
+import { Snackbar } from "../snackbar/snackbar.component";
 
 
 @Component({
   selector: 'app-navigation',
   standalone: true,
-  imports: [JsonPipe, CommonModule, MatListModule, MatButtonModule, MatInputModule, MatDatepickerModule, MatFormField, MatNativeDateModule, RouterLink, RouterLinkActive],
+  imports: [JsonPipe, Snackbar, CommonModule, MatListModule, MatButtonModule, MatInputModule, MatDatepickerModule, MatFormField, MatNativeDateModule, RouterLink, RouterLinkActive],
   providers:[AuthStore],
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.scss'
