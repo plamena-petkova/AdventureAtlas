@@ -23,18 +23,11 @@ import { Snackbar } from "../snackbar/snackbar.component";
 export class NavigationComponent implements OnInit{
   store = inject(AuthStore);
 
+  currentUser = this.store.currentUser;
 ngOnInit(): void {
-  const user = this.store.currentUser;
-  console.log('User', user);
-}
+  
 
-async loadUsers() {
-  await this.store.loadAll();
 }
-
-  onLogout() {
-    this.store.logout();
-  }
   
 }
 

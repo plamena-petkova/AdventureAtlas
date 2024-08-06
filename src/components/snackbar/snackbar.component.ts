@@ -1,12 +1,7 @@
-import {Component, inject} from '@angular/core';
-import {
-  MatSnackBar,
-  MatSnackBarAction,
-  MatSnackBarActions,
-  MatSnackBarLabel,
-  MatSnackBarRef,
-} from '@angular/material/snack-bar';
+import {Component} from '@angular/core';
+import {MatSnackBar, MatSnackBarAction, MatSnackBarActions, MatSnackBarLabel} from '@angular/material/snack-bar';
 import {MatButtonModule} from '@angular/material/button';
+
 
 
 @Component({
@@ -17,5 +12,9 @@ import {MatButtonModule} from '@angular/material/button';
   imports: [MatButtonModule, MatSnackBarLabel, MatSnackBarActions, MatSnackBarAction],
 })
 export class Snackbar {
-  snackBarRef = inject(MatSnackBarRef);
+  constructor(private _snackBar: MatSnackBar) {}
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
+  }
 }

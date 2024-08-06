@@ -10,6 +10,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { AuthStore } from '../../store/auth.store';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -43,12 +44,16 @@ export class LoginComponent {
   constructor(
     private _formBuilder: FormBuilder,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private _snackBar: MatSnackBar
   ) {}
 
   store = inject(AuthStore);
 
-  
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
+  }
 
   onSubmit() {
     const loginData: any = {
@@ -60,12 +65,16 @@ export class LoginComponent {
       this.loginUser(loginData)
           .then(() => console.log('User logged!'))
           this.router.navigate(['/']);
+       
   }
 
   async loginUser(loginData:{username:string, password:string}) {
     try {
       await this.store.login(loginData);
+
     } catch (e) {
+      console.log('E', e);
+      this.openSnackBar(`${e}`, 'close')
       console.error(e)
     }
     

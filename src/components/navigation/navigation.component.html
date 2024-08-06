@@ -7,7 +7,7 @@
         >My Trips</a
       >
       <div>
-        <p>Welcome, {{ store.currentUser() | json }}</p>
+        <p>Welcome, {{ currentUser()?.email}}</p>
         <app-snackbar></app-snackbar>
        
       </div>
